@@ -1,0 +1,25 @@
+#2017-02-20
+#
+#目前页面访问spring-security已经生效，curl目前还是访问不到。
+#访问未成功，跳转到/login页面。
+$ curl -i http://localhost:8000/message
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0HTTP/1.1 302
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Set-Cookie: JSESSIONID=CDB747B6A78CBCB8ED9DBA3D1F010665;path=/;HttpOnly
+Location: http://localhost:8000/login
+Content-Length: 0
+Date: Sun, 19 Feb 2017 16:09:48 GMT
+
+
+#输入用户密码也不行，CSRF无效。
+$ curl -d {} -u user:password http://localhost:8000/message
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   169    0   167  100     2   5387     64 --:--:-- --:--:-- --:--:-- 11133{"timestamp":1487520881256,"status":403,"error":"Forbidden","message":"Could not verify the provided CSRF token because your session was not found.","path":"/message"}
