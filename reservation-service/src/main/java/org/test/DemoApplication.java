@@ -21,7 +21,7 @@ public class DemoApplication {
 		} ;
 		/*	
 		 * branch master is all of spring-cloud
-		 * next step branch spring-cloud-step1-simple
+		 * next step branch spring-cloud step1-config
 		 * next step branch spring-cloud-step2-security-config
 		 * next step branch spring-cloud-step3-eureka
 		 */
