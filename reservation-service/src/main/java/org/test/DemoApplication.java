@@ -19,12 +19,7 @@ public class DemoApplication {
 				.forEach( x -> rr.save(new Reservation(x)) );
 			rr.findAll().forEach(System.out::println);
 		} ;
-		/*	
-		 * branch master is all of spring-cloud
-		 * next step branch spring-cloud step1-config
-		 * next step branch spring-cloud-step2-security-config
-		 * next step branch spring-cloud-step3-eureka
-		 */
+		
 	}
 	
 	public static void main(String[] args) {
