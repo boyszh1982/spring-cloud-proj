@@ -1,25 +1,26 @@
 #2017-02-20
-#
-#目前页面访问spring-security已经生效，curl目前还是访问不到。
-#访问未成功，跳转到/login页面。
-$ curl -i http://localhost:8000/message
+#spring-security 4.x with curl request failed
+
+Administrator@Administrator MINGW64 /d/workspace-cloud/workspace/spring-cloud-proj/reservation-service/src/main/resources/document (step2-security-config)
+$ curl --cookie-jar cookie -L http://localhost:8000/login | grep csrf
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0HTTP/1.1 302
-X-Content-Type-Options: nosniff
-X-XSS-Protection: 1; mode=block
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Pragma: no-cache
-Expires: 0
-X-Frame-Options: DENY
-Set-Cookie: JSESSIONID=CDB747B6A78CBCB8ED9DBA3D1F010665;path=/;HttpOnly
-Location: http://localhost:8000/login
-Content-Length: 0
-Date: Sun, 19 Feb 2017 16:09:48 GMT
+100   535  100   535    0     0  17258      0 --:--:-- --:--:-- --:--:-- 35666  <input name="_csrf" type="hidden" value="47086097-2f45-4a4d-874c-367ce9a6eeb0" />
 
 
-#输入用户密码也不行，CSRF无效。
-$ curl -d {} -u user:password http://localhost:8000/message
+Administrator@Administrator MINGW64 /d/workspace-cloud/workspace/spring-cloud-proj/reservation-service/src/main/resources/document (step2-security-config)
+$ curl --cookie cookie -d "username=user&password=password&_csrf=47086097-2f45-4a4d-874c-367ce9a6eeb0" -L http://localhost:8000/login
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100   169    0   167  100     2   5387     64 --:--:-- --:--:-- --:--:-- 11133{"timestamp":1487520881256,"status":403,"error":"Forbidden","message":"Could not verify the provided CSRF token because your session was not found.","path":"/message"}
+100    74    0     0  100    74      0   2387 --:--:-- --:--:-- --:--:--  4933
+100   228    0   228    0     0   1461      0 --:--:-- --:--:-- --:--:--  1461{
+  "_links" : {
+    "reservations" : {
+      "href" : "http://localhost:8000/reservations{?page,size,sort}",
+      "templated" : true
+    },
+    "profile" : {
+      "href" : "http://localhost:8000/profile"
+    }
+  }
+}

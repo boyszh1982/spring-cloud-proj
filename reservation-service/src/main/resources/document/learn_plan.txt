@@ -1,0 +1,15 @@
+#branch master 
+All of spring-cloud
+
+#branch step1-config 
+spring-cloud hello world !
+
+#branch step2-security-config 
+spring restful with spring-security
+to request with curl-command without spring-security
+#to request with curl-command with spring-security
+
+#branch step3-eureka
+
+#branch step4-spring-boot-oauth2
+http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html
