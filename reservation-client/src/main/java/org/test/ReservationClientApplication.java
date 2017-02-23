@@ -10,7 +10,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  * http://192.168.1.100:8050/reservation-service/message 通过zuul访问接口
  * http://192.168.1.100:8001/message 直接访问接口
  * sts 报错，找不到ZuulFilter可忽略，用命令行启动reservation-client即可
- * @author Administrator 
+ * @author Administrator
  *
  */
 @EnableZuulProxy
