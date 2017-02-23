@@ -3,15 +3,18 @@ package org.test.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+/*
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
-@EnableWebSecurity
+*/
+//注释,方便测试,暂不使用此配置,还需要注释掉pom中的spring-security
+//@EnableWebSecurity
 public class MultiHttpSecurityConfig {
+	/*
 	@Bean
 	public UserDetailsService userDetailsService() throws Exception {
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
@@ -37,4 +40,5 @@ public class MultiHttpSecurityConfig {
 			http.authorizeRequests().anyRequest().authenticated().and().formLogin();
 		}
 	}
+	*/
 }

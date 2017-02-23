@@ -5,10 +5,12 @@ import java.util.Arrays;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.test.dao.ReservationRepository;
 import org.test.vo.Reservation;
 
+@EnableDiscoveryClient
 @SpringBootApplication
 public class DemoApplication {
 
