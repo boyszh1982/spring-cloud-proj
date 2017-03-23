@@ -1,0 +1,69 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+	monitoring="autodetect" dynamicConfig="true">
+
+	<diskStore path="c:/ehcache/diskStore" />
+	<!-- RMI -->
+	<cacheManagerPeerProviderFactory
+		class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+		properties="peerDiscovery=automatic,
+					multicastGroupAddress=230.0.0.1,
+	    			multicastGroupPort=9000,
+	    			timeToLive=32,
+	    			hostName=127.0.0.1"
+	/>
+	<!-- RMI tomcat_1:127.0.0.1:9001,tomcat_2:127.0.0.1:9002....-->
+	<cacheManagerPeerListenerFactory
+		class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
+		properties="hostName=127.0.0.1,
+					port=9002, 
+					socketTimeoutMillis=2000"
+	/>
+	<!-- JGroup -->
+	<!-- 
+	<cacheManagerPeerProviderFactory 
+		class="net.sf.ehcache.distribution.jgroups.JGroupsCacheManagerPeerProviderFactory"
+		properties="connect=TCP(start_port=7800):
+		TCPPING(initial_hosts=192.168.2.154[7800],192.168.2.23[7800];port_range=10;timeout=3000;
+		num_initial_members=3;up_thread=true;down_thread=true):
+		VERIFY_SUSPECT(timeout=1500;down_thread=false;up_thread=false):
+		pbcast.NAKACK(down_thread=true;up_thread=true;gc_lag=100;retransmit_timeout=3000):
+		pbcast.GMS(join_timeout=5000;join_retry_timeout=2000;shun=false;
+		print_local_addr=false;down_thread=true;up_thread=true)"
+		propertySeparator="::" 
+	/>
+	-->
+	<defaultCache  
+           maxElementsInMemory="1000"  
+           eternal="false"  
+           timeToIdleSeconds="120"  
+           timeToLiveSeconds="120"  
+           overflowToDisk="false"/>
+	<cache 
+		name="myCache"
+		eternal="false"
+		timeToIdleSeconds="10000" 
+		timeToLiveSeconds="10000" 
+		overflowToDisk="false">
+		
+		<bootstrapCacheLoaderFactory class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory"/>
+		<!-- RMI -->
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+			properties="replicateAsynchronously=true,
+						replicatePuts=true,
+						replicateUpdates=true,
+						replicateUpdatesViaCopy=false,
+						replicateRemovals=true,
+						asynchronousReplicationIntervalMillis=1000"
+		/>
+		<!-- JGroup -->
+		<!-- 
+		<cacheEventListenerFactory 
+			class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+			properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true"
+		/>
+		 -->		 
+		
+	</cache>
+</ehcache>
