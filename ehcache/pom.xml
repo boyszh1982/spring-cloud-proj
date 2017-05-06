@@ -62,6 +62,15 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>servlet-api</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/servlet-api.jar</systemPath>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>ehcache</finalName>

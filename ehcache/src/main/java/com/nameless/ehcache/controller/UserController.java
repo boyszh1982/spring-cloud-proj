@@ -1,7 +1,8 @@
 package com.nameless.ehcache.controller;
 
-import javax.annotation.Resource;
+//import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +14,8 @@ import com.nameless.ehcache.service.IUserService;
 @Controller
 @RequestMapping("cacheTest")
 public class UserController {
-	@Resource
+	//@Resource
+	@Autowired
 	private IUserService userService;
 
 	@RequestMapping(value = "/get/{userNo}", method = RequestMethod.GET)
